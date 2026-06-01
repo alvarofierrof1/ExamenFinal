@@ -124,4 +124,25 @@ public class MotorJuego {
     public String getEstado() {
         return estado;
     }
+
+    public String simularQuickSave() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("{\n");
+    sb.append("  \"estadoActual\": \"").append(this.estado).append("\",\n");
+    sb.append("  \"puntuacion\": ").append(this.sistemaPuntuacion.getPuntos()).append(",\n");
+    sb.append("  \"logroDesbloqueado\": ").append(this.sistemaPuntuacion.isLogroDesbloqueado()).append(",\n");
+    sb.append("  \"entidadesActivas\": [\n");
+    
+    for (int i = 0; i < entidades.size(); i++) {
+        EntidadVideojuego e = entidades.get(i);
+        sb.append("    { \"nombre\": \"").append(e.getNombre())
+          .append("\", \"tipo\": \"").append(e.getTipo())
+          .append("\", \"posicion\": [").append(e.getX()).append(",").append(e.getY()).append("]")
+          .append(", \"vida\": ").append(e.getVida()).append(" }");
+        if (i < entidades.size() - 1) sb.append(",\n");
+    }
+    
+    sb.append("\n  ]\n}");
+    return sb.toString();
+}
 }
