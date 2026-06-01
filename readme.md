@@ -57,80 +57,77 @@ Cuando el jugador alcanza 30 puntos se desbloquea automáticamente un logro espe
 
 ## Diagrama de Clases UML
 
-```plantuml
-@startuml
+```mermaid
 
-class Main
 
-class MotorJuego{
-- estado : String
-- entidades : ArrayList
-- sistemaPuntuacion : SistemaPuntuacion
+classDiagram
+    direction LR
+    class Main {
+    }
+    class MotorJuego {
+        -String estado
+        -ArrayList entidades
+        -SistemaPuntuacion sistemaPuntuacion
+        +iniciarPartida()
+        +pausar()
+        +reanudar()
+        +gameOver()
+        +actualizar()
+    }
+    class EntidadVideojuego {
+        -String nombre
+        -String tipo
+        -int x
+        -int y
+        -int w
+        -int h
+        -int vida
+        -String imagen
+        +mover(int dx, int dy)
+        +recibirDanio(int cantidad)
+    }
+    class GestorEntradas {
+        -MotorJuego motorJuego
+        +moverJugador(String direccion)
+        +accion()
+    }
+    class SistemaPuntuacion {
+        -int puntos
+        -boolean logroDesbloqueado
+        +sumarPuntos(int cantidad)
+        +verificarLogro()
+    }
 
-+ iniciarPartida()
-+ pausar()
-+ reanudar()
-+ gameOver()
-+ actualizar()
-}
+    Main --> MotorJuego
+    MotorJuego --> EntidadVideojuego
+    MotorJuego --> SistemaPuntuacion
+    GestorEntradas --> MotorJuego
 
-class EntidadVideojuego{
-- nombre : String
-- tipo : String
-- x : int
-- y : int
-- w : int
-- h : int
-- vida : int
-- imagen : String
-
-+ mover()
-+ recibirDanio()
-}
-
-class GestorEntradas{
-+ moverJugador(String)
-+ accion()
-}
-
-class SistemaPuntuacion{
-- puntos : int
-- logroDesbloqueado : boolean
-
-+ sumarPuntos()
-+ verificarLogro()
-}
-
-Main --> MotorJuego
-MotorJuego --> EntidadVideojuego
-MotorJuego --> SistemaPuntuacion
-GestorEntradas --> MotorJuego
-
-@enduml
 ```
 
 ## Diagrama de Casos de Uso UML
 
-```plantuml
-@startuml
+```mermaid
 
-actor Jugador
 
-rectangle Sistema {
-usecase "Iniciar Partida" as UC1
-usecase "Mover Jugador" as UC2
-usecase "Recoger Balón" as UC3
-usecase "Pausar Juego" as UC4
-usecase "Reanudar Juego" as UC5
-}
+graph LR
+    Jugador((Actor: Jugador))
 
-Jugador --> UC1
-Jugador --> UC2
-Jugador --> UC3
-Jugador --> UC4
-Jugador --> UC5
+    subgraph Sistema: Motor de Juego
+        UC1(CU-01: Iniciar Partida)
+        UC2(CU-02: Mover Jugador)
+        UC3(CU-03: Recoger Balón y Sumar Puntos)
+        UC4(CU-04: Pausar / Reanudar Juego)
+        UC5(CU-05: Colisión con Defensa y Game Over)
+    end
 
-@enduml
+    Jugador --> UC1
+    Jugador --> UC2
+    Jugador --> UC3
+    Jugador --> UC4
+    Jugador --> UC5
+
+
 ```
 ## Especificación de Casos de Uso
 
