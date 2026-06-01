@@ -174,3 +174,5 @@ Durante el co-diseño del software, la IA cometió un error de **sobreingenierí
 ### Reflexión Crítica
 * **Ventajas:** El desarrollo asistido por IA reduce drásticamente el tiempo empleado en escribir código repetitivo (*boilerplate code*), como la generación de getters, setters, constructores y estructuras básicas de control. También facilita el diseño rápido de diagramas UML en texto plano (PlantUML).
 * **Peligros:** Bajo la presión del tiempo, es fácil aceptar soluciones a ciegas. Si no se revisa con criterio de estudiante de DAW, la IA tiende a saltarse las restricciones de diseño del enunciado (creando jerarquías complejas de clases o usando librerías de terceros) o a romper principios de encapsulación (como los *magic strings* detectados en la lógica de control de tipos de entidad). La supervisión humana estricta sigue siendo indispensable.
+## Evidencia de Ejecución
+<img width="391" height="265" alt="2b725f47-df73-47ab-b670-da9f2d41d4a3" src="https://github.com/user-attachments/assets/24e199ac-eb7a-4db7-94f5-696ea87289c0" />
